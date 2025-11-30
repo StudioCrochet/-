@@ -65,8 +65,7 @@ const products =
             "assets/img/106.jpg",
             "assets/img/107.jpg",
             "assets/img/108.jpg",
-            "assets/img/109.jpg",
-            "assets/img/110.jpg"
+            "assets/img/109.jpg"
         ]
     },
     {
@@ -1413,3 +1412,4 @@ window.toggleModalWrap = toggleModalWrap;
 
 // --- RUN ---
 init();
+
