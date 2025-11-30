@@ -265,78 +265,106 @@
         </div>
     </footer>
 
-    <!-- PRODUCT MODAL (same as index) -->
-    <div id="productModal" class="fixed inset-0 z-[60] hidden" aria-modal="true">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" id="modalOverlay"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-4">
-            <div class="bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] shadow-2xl transform transition-all scale-95 opacity-0 relative overflow-hidden flex flex-col" id="modalContent">
-                
-                <button class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 hover:bg-sc-accent hover:text-white transition-colors flex items-center justify-center text-lg shadow-sm" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
+ <!-- PRODUCT MODAL (same as index) -->
+<div id="productModal" class="fixed inset-0 z-[60] hidden" aria-modal="true">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" id="modalOverlay"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] shadow-2xl transform transition-all scale-95 opacity-0 relative overflow-hidden flex flex-col" id="modalContent">
+            
+            <!-- CLOSE BUTTON -->
+            <button class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 hover:bg-sc-accent hover:text-white transition-colors flex items-center justify-center text-lg shadow-sm"
+                onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
 
-                <div class="flex-1 overflow-y-auto flex flex-col md:flex-row w-full h-full">
+            <div class="flex-1 overflow-y-auto flex flex-col md:flex-row w-full h-full">
+
+                <!-- IMAGE AREA -->
+                <div class="w-full md:w-1/2 bg-gray-100 relative group min-h-[400px] md:min-h-auto flex items-center justify-center">
+
+                    <!-- ⭐ MAIN IMAGE — FIXED PERFECT FIT -->
+                    <img id="modalMainImage"
+                        src=""
+                        class="max-h-full max-w-full object-contain bg-white p-4 rounded-xl transition-all"
+                        alt="Product Image">
+
+                    <!-- SLIDER BUTTONS -->
+                    <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full hover:bg-sc-accent hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                        onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full hover:bg-sc-accent hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                        onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- THUMBNAILS -->
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
+                        id="modalThumbnails"></div>
+                </div>
+
+                <!-- PRODUCT INFO AREA -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col bg-white">
                     
-                    <div class="w-full md:w-1/2 bg-gray-100 relative group min-h-[400px] md:min-h-auto">
-                        <img id="modalMainImage" src="" class="w-full h-full object-cover" alt="Product Image">
-                        <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full hover:bg-sc-accent hover:text-white transition-colors opacity-0 group-hover:opacity-100" onclick="changeSlide(-1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full hover:bg-sc-accent hover:text-white transition-colors opacity-0 group-hover:opacity-100" onclick="changeSlide(1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="modalThumbnails"></div>
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2 block">Category</span>
+                        <h2 id="modalTitle" class="font-serif text-3xl md:text-4xl font-bold text-sc-dark mb-4"></h2>
+                        <p id="modalPrice" class="text-2xl font-medium text-sc-accent mb-6"></p>
+                        <p id="modalDescription" class="text-gray-600 leading-relaxed mb-8"></p>
+                        
+                        <div id="modalVariants" class="space-y-6 mb-8"></div>
                     </div>
 
-                    <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col bg-white">
-                        
-                        <div>
-                            <span id="modalCategory" class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2 block">Category</span>
-                            <h2 id="modalTitle" class="font-serif text-3xl md:text-4xl font-bold text-sc-dark mb-4"></h2>
-                            <p id="modalPrice" class="text-2xl font-medium text-sc-accent mb-6"></p>
-                            <p id="modalDescription" class="text-gray-600 leading-relaxed mb-8"></p>
-                            
-                            <div id="modalVariants" class="space-y-6 mb-8"></div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+
+                        <!-- GIFT WRAP -->
+                        <div class="flex items-center gap-3 mb-6 p-4 bg-sc-bg rounded-xl border border-green-100 cursor-pointer hover:border-sc-accent transition-colors"
+                            onclick="toggleModalWrap()">
+
+                            <div class="relative">
+                                <input type="checkbox" id="modalWrapCheckbox" class="peer sr-only">
+                                <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sc-accent"></div>
+                            </div>
+
+                            <div>
+                                <span class="font-bold text-sm text-sc-dark">Add Gift Wrap (+₹49)</span>
+                                <p class="text-xs text-gray-500">Eco-friendly paper + handwritten note</p>
+                            </div>
                         </div>
 
-                        <div class="mt-auto pt-6 border-t border-gray-100">
-                            
-                            <!-- GIFT WRAP OPTION -->
-                            <div class="flex items-center gap-3 mb-6 p-4 bg-sc-bg rounded-xl border border-green-100 cursor-pointer hover:border-sc-accent transition-colors" onclick="toggleModalWrap()">
-                                <div class="relative">
-                                    <input type="checkbox" id="modalWrapCheckbox" class="peer sr-only">
-                                    <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sc-accent"></div>
-                                </div>
-                                <div>
-                                    <span class="font-bold text-sm text-sc-dark">Add Gift Wrap (+₹49)</span>
-                                    <p class="text-xs text-gray-500">Eco-friendly paper + handwritten note</p>
-                                </div>
+                        <!-- QUANTITY + ADD TO CART -->
+                        <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
+                            <div class="flex items-center border border-gray-300 rounded-full h-14 w-full sm:w-32">
+                                <button class="w-10 h-full flex items-center justify-center hover:bg-gray-100 rounded-l-full text-sc-dark"
+                                    onclick="updateModalQuantity(-1)">-</button>
+
+                                <input type="number" id="modalQuantity" value="1" min="1"
+                                    class="w-full text-center border-none focus:outline-none h-full bg-transparent text-sc-dark font-medium" readonly>
+
+                                <button class="w-10 h-full flex items-center justify-center hover:bg-gray-100 rounded-r-full text-sc-dark"
+                                    onclick="updateModalQuantity(1)">+</button>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
-                                <div class="flex items-center border border-gray-300 rounded-full h-14 w-full sm:w-32">
-                                    <button class="w-10 h-full flex items-center justify-center hover:bg-gray-100 rounded-l-full text-sc-dark" onclick="updateModalQuantity(-1)">-</button>
-                                    <input type="number" id="modalQuantity" value="1" min="1" class="w-full text-center border-none focus:outline-none h-full bg-transparent text-sc-dark font-medium" readonly>
-                                    <button class="w-10 h-full flex items-center justify-center hover:bg-gray-100 rounded-r-full text-sc-dark" onclick="updateModalQuantity(1)">+</button>
-                                </div>
-
-                                <button id="modalAddToCartBtn" class="w-full h-14 bg-sc-accent text-white rounded-full font-bold hover:bg-sc-hover hover:shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
-                                    <span class="text-lg">Add to Cart</span>
-                                    <i class="fas fa-shopping-bag"></i>
-                                </button>
-                            </div>
-
-                            <button id="modalToggleWishlistBtn" class="w-full h-12 border border-sc-card text-gray-500 rounded-full font-medium hover:border-sc-accent hover:text-sc-accent transition-colors flex items-center justify-center gap-2 text-sm">
-                                <i class="far fa-heart"></i>
-                                <span>Add to Wishlist</span>
+                            <button id="modalAddToCartBtn"
+                                class="w-full h-14 bg-sc-accent text-white rounded-full font-bold hover:bg-sc-hover hover:shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                                <span class="text-lg">Add to Cart</span>
+                                <i class="fas fa-shopping-bag"></i>
                             </button>
-                            <br>
                         </div>
+
+                        <!-- WISHLIST -->
+                        <button id="modalToggleWishlistBtn"
+                            class="w-full h-12 border border-sc-card text-gray-500 rounded-full font-medium hover:border-sc-accent hover:text-sc-accent transition-colors flex items-center justify-center gap-2 text-sm">
+                            <i class="far fa-heart"></i>
+                            <span>Add to Wishlist</span>
+                        </button>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
     </div>
 
     <!-- CART DRAWER (same as index) -->
