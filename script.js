@@ -474,6 +474,56 @@ const els = {
     // modal wrapping
     modalWrapCheckbox: document.getElementById('modalWrapCheckbox')
 };
+// =============================
+// SWIPE FOR MODAL IMAGES (MOBILE)
+// =============================
+function setupModalImageSwipe() {
+    const img = document.getElementById('modalMainImage');
+    if (!img) return;
+
+    let startX = 0;
+    let startY = 0;
+    let isMoving = false;
+
+    const SWIPE_THRESHOLD = 40; // minimum px to count as swipe
+
+    img.addEventListener('touchstart', (e) => {
+        if (!e.touches || e.touches.length === 0) return;
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        isMoving = true;
+    }, { passive: true });
+
+    img.addEventListener('touchmove', (e) => {
+        // we don't need to prevent scroll, just track movement
+        if (!isMoving || !e.touches || e.touches.length === 0) return;
+    }, { passive: true });
+
+    img.addEventListener('touchend', (e) => {
+        if (!isMoving) return;
+        isMoving = false;
+
+        if (!e.changedTouches || e.changedTouches.length === 0) return;
+        const touch = e.changedTouches[0];
+        const diffX = touch.clientX - startX;
+        const diffY = touch.clientY - startY;
+
+        // Ignore mostly vertical swipes
+        if (Math.abs(diffX) < Math.abs(diffY)) return;
+
+        // Check horizontal distance
+        if (Math.abs(diffX) < SWIPE_THRESHOLD) return;
+
+        if (diffX < 0) {
+            // Swipe LEFT → next image
+            changeSlide(1);
+        } else {
+            // Swipe RIGHT → previous image
+            changeSlide(-1);
+        }
+    }, { passive: true });
+}
 
 // =============================
 // INITIALIZATION
@@ -482,7 +532,6 @@ function init() {
     // Migration helper
     cart.forEach(item => {
         if (!item.cartId) item.cartId = 'migrated_' + Math.random().toString(36).substr(2, 9);
-        // Ensure wrap property exists
         if (typeof item.wrap === 'undefined') item.wrap = false;
     });
     saveCart();
@@ -494,8 +543,11 @@ function init() {
     updateCartUI();
     updateWishlistBadge();
     renderWishlist(); 
+
+    // 👉 Enable swipe on modal main image (for phones)
     setupModalImageSwipe();
 }
+
 
 // =============================
 // PRODUCT RENDERING
@@ -1147,58 +1199,6 @@ function showToast(msg) {
 // EVENT LISTENERS & OBSERVERS
 // =============================
 function setupEventListeners() {
-
-    // =============================
-// SWIPE FOR MODAL IMAGES (MOBILE)
-// =============================
-function setupModalImageSwipe() {
-
-    const img = document.getElementById('modalMainImage');
-    if (!img) return;
-
-    let startX = 0;
-    let startY = 0;
-    let isMoving = false;
-
-    const SWIPE_THRESHOLD = 40; // minimum px to count as swipe
-
-    img.addEventListener('touchstart', (e) => {
-        if (!e.touches || e.touches.length === 0) return;
-        const touch = e.touches[0];
-        startX = touch.clientX;
-        startY = touch.clientY;
-        isMoving = true;
-    }, { passive: true });
-
-    img.addEventListener('touchmove', (e) => {
-        // we don't need to prevent scroll, just track movement
-        if (!isMoving || !e.touches || e.touches.length === 0) return;
-    }, { passive: true });
-
-    img.addEventListener('touchend', (e) => {
-        if (!isMoving) return;
-        isMoving = false;
-
-        if (!e.changedTouches || e.changedTouches.length === 0) return;
-        const touch = e.changedTouches[0];
-        const diffX = touch.clientX - startX;
-        const diffY = touch.clientY - startY;
-
-        // Ignore mostly vertical swipes
-        if (Math.abs(diffX) < Math.abs(diffY)) return;
-
-        // Check horizontal distance
-        if (Math.abs(diffX) < SWIPE_THRESHOLD) return;
-
-        if (diffX < 0) {
-            // Swipe LEFT → next image
-            changeSlide(1);
-        } else {
-            // Swipe RIGHT → previous image
-            changeSlide(-1);
-        }
-    }, { passive: true });
-}
 
 
     // Cart Toggles
