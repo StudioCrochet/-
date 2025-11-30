@@ -1,4 +1,3 @@
-
 // Show only first N products on home page
 const HOME_MAX_PRODUCTS = 6;
 
@@ -26,35 +25,34 @@ const MERCHANT_NAME = 'StudioCrochet';
 // 👉 Store WhatsApp (numbers only, incl. country code)
 const STORE_WHATSAPP = '916381602251';
 
-// 👉 EmailJS details (PUT REAL VALUES)
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+// 👉 EmailJS details
+const EMAILJS_PUBLIC_KEY = 'e5-__Xd6fb1qHJ2Ck';
+const EMAILJS_SERVICE_ID = 'service_3yklmd8';
+const EMAILJS_TEMPLATE_ID = 'template_5lsl3va';
 
-// OPTIONAL: your own store email
-const STORE_EMAIL = 'vishnupermal388@gmail.com';
+// OPTIONAL: your own store email (where you want order mail)
+const STORE_EMAIL = 'studiocrochet07@gmail.com';
 
-if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+// Initialize EmailJS (if script is loaded)
+if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) {
     emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
 // --- PRODUCT DATA (Updated with INR Prices) ---
 const products = 
 [
-
-    
     {
-    id: 1,
-    title: "Pastel Crochet Tulip Pot",
-    price: 899,
-    category: "decor",
-    description: "A handcrafted pastel tulip arrangement made with soft premium yarn. Features cream and blush tulips placed in a cute crochet pot decorated with a bow. Perfect for gifting, desk decoration, and adding a cozy aesthetic touch to any space.",
-    variants: { Color: ["Blush Mix"], Size: ["Standard", "Large", "Small"] },
-    images: [
-        "assets/img/113.jpg", 
-        "assets/img/112.jpg",
-        "assets/img/111.jpg"
-    ]
+        id: 1,
+        title: "Pastel Crochet Tulip Pot",
+        price: 899,
+        category: "decor",
+        description: "A handcrafted pastel tulip arrangement made with soft premium yarn. Features cream and blush tulips placed in a cute crochet pot decorated with a bow. Perfect for gifting, desk decoration, and adding a cozy aesthetic touch to any space.",
+        variants: { Color: ["Blush Mix"], Size: ["Standard", "Large", "Small"] },
+        images: [
+            "assets/img/113.jpg", 
+            "assets/img/112.jpg",
+            "assets/img/111.jpg"
+        ]
     },
     {
         id: 2,
@@ -88,12 +86,12 @@ const products =
         ]
     },
     {
-            id: 4,
-            title: "Crochet Sunflower Pot",
-            price: 499,
-            category: "decor",
-            description: "Handmade sunflower in a soft crochet pot. Bright, cute, and perfect for desk décor.",
-            variants: { FlowerColor: ["Yellow","Orange"], PotColor: ["Cream"]},
+        id: 4,
+        title: "Crochet Sunflower Pot",
+        price: 499,
+        category: "decor",
+        description: "Handmade sunflower in a soft crochet pot. Bright, cute, and perfect for desk décor.",
+        variants: { FlowerColor: ["Yellow","Orange"], PotColor: ["Cream"]},
         images: [
             "assets/img/95.jpg",
             "assets/img/96.jpg",
@@ -108,7 +106,7 @@ const products =
         category: "decor",
         description: "Handmade sunflower stems with bright petals and sturdy detailing. Perfect for vases and gifting.",
         variants: { Pack: ["Single Stem", "Pack of 2"] },
-            images: [
+        images: [
             "assets/img/91.jpg",
             "assets/img/92.jpg",
             "assets/img/93.jpg",
@@ -249,7 +247,7 @@ const products =
         variants: { Size: ["S", "M", "L"], Color: ["Blue & Cream"] },
         images: [
             "assets/img/44.jpg",
-            "assets/img/45.jpg",
+            "assets/img/45.jpg"
         ]
     },
     {
@@ -310,7 +308,7 @@ const products =
         images: [
             "assets/img/30.jpg",
             "assets/img/31.jpg",
-            "assets/img/32.jpg",
+            "assets/img/32.jpg"
         ]
     },
     {
@@ -321,7 +319,7 @@ const products =
         description: "Handmade blue crochet flower keychains with bright yellow centers.",
         variants: { Pack: ["Single", "Set of 2"] },
         images: [
-            "assets/img/29.jpg",
+            "assets/img/29.jpg"
         ]
     },
     {
@@ -332,7 +330,7 @@ const products =
         description: "Handmade round crochet mat perfect for plant pots and table décor.",
         variants: { Colors: ["Green Mix", "Red-Green Mix"] },
         images: [
-            "assets/img/28.jpg",
+            "assets/img/28.jpg"
         ]
     },
     {
@@ -343,7 +341,7 @@ const products =
         description: "Lightweight handmade mesh bag with a soft cream finish.",
         variants: { Color: ["Cream"] },
         images: [
-            "assets/img/27.jpg",
+            "assets/img/27.jpg"
         ]
     },
     {
@@ -367,7 +365,7 @@ const products =
         variants: { Color: ["Blue-White", "Beige-White"] },
         images: [
             "assets/img/24.jpg",
-            "assets/img/23.jpg",
+            "assets/img/23.jpg"
         ]
     },
     {
@@ -381,7 +379,7 @@ const products =
             "assets/img/17.jpg",
             "assets/img/18.jpg",
             "assets/img/19.jpg",
-            "assets/img/20.jpg",
+            "assets/img/20.jpg"
         ]
     },
     {
@@ -394,7 +392,7 @@ const products =
         images: [
             "assets/img/14.jpg",
             "assets/img/15.jpg",
-            "assets/img/16.jpg",
+            "assets/img/16.jpg"
         ]
     },
     {
@@ -406,7 +404,7 @@ const products =
         variants: { Color: ["Mint-Peach", "Blue-White"] },
         images: [
             "assets/img/13.jpg",
-            "assets/img/12.jpg",
+            "assets/img/12.jpg"
         ]
     },
     {
@@ -418,7 +416,7 @@ const products =
         variants: { Color: ["Black & White"]},
         images: [
             "assets/img/10.jpg",
-            "assets/img/11.jpg",
+            "assets/img/11.jpg"
         ]
     },
     {
@@ -432,11 +430,9 @@ const products =
             "assets/img/9.jpg",
             "assets/img/8.jpg",
             "assets/img/7.jpg",
-            "assets/img/6.jpg",
-            
+            "assets/img/6.jpg"
         ]
     }
-
 ];
 
 // --- STATE (localStorage based) ---
@@ -506,7 +502,7 @@ function init() {
 function renderProducts(input) {
     els.grid.innerHTML = '';
 
-    const baseList = getBaseProductList(); // 👈 key change
+    const baseList = getBaseProductList();
 
     let list;
     if (Array.isArray(input)) {
@@ -569,7 +565,7 @@ function openModal(id) {
     document.getElementById('modalQuantity').value = 1;
     
     // Reset checkbox
-    if(els.modalWrapCheckbox) els.modalWrapCheckbox.checked = false;
+    if (els.modalWrapCheckbox) els.modalWrapCheckbox.checked = false;
 
     const variantContainer = document.getElementById('modalVariants');
     variantContainer.innerHTML = '';
@@ -631,10 +627,10 @@ function updateModalQuantity(change) {
 
 // Helper to toggle checkbox from parent div click
 window.toggleModalWrap = function() {
-    if(els.modalWrapCheckbox) {
+    if (els.modalWrapCheckbox) {
         els.modalWrapCheckbox.checked = !els.modalWrapCheckbox.checked;
     }
-}
+};
 
 window.selectVariant = function(btn) {
     const parent = btn.parentElement;
@@ -1249,14 +1245,16 @@ function setupEventListeners() {
         window.location.href = lastUpiUrl;
     });
 
-    // Confirm order via WhatsApp
+    // Confirm order via WhatsApp + EmailJS
     document.getElementById('confirmOrderBtn').addEventListener('click', () => {
         const data = getCheckoutData();
         if (!data) return;
         
+        // Full WhatsApp-style message (with *bold* etc.)
         const orderText = buildOrderText(data.name, data.address, data.pincode, data.whatsapp);
         const encoded = encodeURIComponent(orderText);
 
+        // WhatsApp flow
         if (STORE_WHATSAPP && STORE_WHATSAPP !== '91XXXXXXXXXX') {
             const url = `https://wa.me/${STORE_WHATSAPP}?text=${encoded}`;
             window.open(url, '_blank');
@@ -1265,19 +1263,34 @@ function setupEventListeners() {
         }
 
         // EmailJS Logic
-        if (window.emailjs && EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-            const params = {
-                store_email: STORE_EMAIL,
-                customer_name: data.name,
-                customer_address: data.address,
-                customer_pincode: data.pincode,
-                customer_whatsapp: data.whatsapp,
-                order_text: orderText
-            };
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(
-                () => {}, 
-                (err) => { console.error('EmailJS error', err); }
-            );
+        // Clean order text for email (remove * to avoid markup)
+        const cleanedOrderText = orderText.replace(/\*/g, '');
+
+        const emailParams = {
+            store_email: STORE_EMAIL,
+            customer_name: data.name,
+            customer_address: data.address,
+            customer_pincode: data.pincode,
+            customer_whatsapp: data.whatsapp,
+            order_text: cleanedOrderText
+        };
+
+        console.log('EmailJS params:', emailParams);
+
+        if (
+            window.emailjs &&
+            EMAILJS_SERVICE_ID &&
+            EMAILJS_TEMPLATE_ID
+        ) {
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+                .then(() => {
+                    console.log('Order email sent via EmailJS ✅');
+                })
+                .catch((err) => {
+                    console.error('EmailJS error ❌', err);
+                });
+        } else {
+            console.warn('EmailJS not fully configured or not loaded');
         }
 
         clearCart();
@@ -1327,7 +1340,7 @@ function setupEventListeners() {
     const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
     
     function toggleMobileMenu(open) {
-        if(open) {
+        if (open) {
             els.mobileMenuOverlay.classList.remove('hidden');
             setTimeout(() => els.mobileMenuOverlay.classList.remove('opacity-0'), 10);
             els.mobileMenu.classList.remove('mobile-menu-closed');
@@ -1350,7 +1363,7 @@ function setupEventListeners() {
     // Header Scroll Effect
     window.addEventListener('scroll', () => {
         const header = document.getElementById('mainHeader');
-        if(window.scrollY > 50) {
+        if (window.scrollY > 50) {
             header.classList.add('shadow-md', 'py-0');
         } else {
             header.classList.remove('shadow-md', 'py-0');
