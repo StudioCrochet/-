@@ -439,28 +439,36 @@
         </div>
     </footer>
 
-<!-- PRODUCT MODAL (same as index) -->
+<!-- PRODUCT MODAL -->
 <div id="productModal" class="fixed inset-0 z-[60] hidden" aria-modal="true">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" id="modalOverlay"></div>
+
     <div class="absolute inset-0 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] shadow-2xl transform transition-all scale-95 opacity-0 relative overflow-hidden flex flex-col" id="modalContent">
-            
+        <!-- ✅ Modal scrolls on mobile, fixed height on desktop -->
+        <div id="modalContent"
+             class="bg-white rounded-3xl w-full max-w-5xl shadow-2xl transform transition-all scale-95 opacity-0
+                    relative flex flex-col max-h-[90vh] md:h-[90vh] overflow-y-auto md:overflow-hidden">
+
             <!-- CLOSE BUTTON -->
             <button class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 hover:bg-sc-accent hover:text-white transition-colors flex items-center justify-center text-lg shadow-sm"
                 onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </button>
 
-            <div class="flex-1 overflow-y-auto flex flex-col md:flex-row w-full h-full">
+            <!-- MAIN FLEX -->
+            <div class="flex-1 flex flex-col md:flex-row w-full h-full">
 
-               <!-- IMAGE AREA -->
-                <div class="w-full md:w-1/2 bg-gray-100 relative group min-h-[450px] overflow-hidden flex items-center justify-center">
+                <!-- IMAGE AREA -->
+                <!-- 📱 Mobile: normal block, scrolls with content
+                     🖥️ Desktop: static left, fills height -->
+                <div class="w-full md:w-1/2 bg-gray-100 relative group
+                            overflow-hidden flex items-center justify-center
+                            min-h-[260px] md:min-h-0 md:h-full md:sticky md:top-0">
 
-                    <!-- ⭐ MAIN IMAGE — CENTERED PERFECT FIT (NO SIDE GAPS) ⭐ -->
                     <img id="modalMainImage"
-                        src=""
-                        class="w-full h-full object-cover object-center"
-                        alt="Product Image">
+                         src=""
+                         class="w-full h-auto md:h-full object-cover object-center"
+                         alt="Product Image">
 
                     <!-- SLIDER BUTTONS -->
                     <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full hover:bg-sc-accent hover:text-white transition-colors opacity-0 group-hover:opacity-100"
@@ -478,10 +486,12 @@
                         id="modalThumbnails"></div>
                 </div>
 
-
                 <!-- PRODUCT INFO AREA -->
-                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col bg-white">
-                    
+                <!-- 📱 Mobile: uses modal scroll
+                     🖥️ Desktop: right side scrolls inside fixed 90vh -->
+                <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col bg-white
+                            md:overflow-y-auto md:max-h-[90vh]">
+
                     <div>
                         <span id="modalCategory" class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2 block">Category</span>
                         <h2 id="modalTitle" class="font-serif text-3xl md:text-4xl font-bold text-sc-dark mb-4"></h2>
@@ -538,6 +548,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -696,4 +707,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
